@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#F7F4EF">
+<title>超有感心流測驗 · 獨家生日專屬測驗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F4EF; --ink:#2C2A26; --ink-mid:#4A4742; --ink-light:#5A5650;
+  --gold:#C9A96E; --gold-pale:#E8D9BA; --border:#DDD8CF; --white:#FDFCF9;
+  --red:#B03A2E; --green:#4A7C5F;
+}
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+html{ -webkit-text-size-adjust:100%; }
+body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans TC',sans-serif; font-weight:300; min-height:100vh; }
+
+.page{ max-width:480px; margin:0 auto; padding:28px 22px 80px; position:relative; z-index:1; }
+.page::before{
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 10% 90%,rgba(201,169,110,0.07) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 40% at 90% 10%,rgba(180,195,190,0.07) 0%,transparent 55%);
+}
+
+/* TOP BAR */
+.top-bar{ display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; }
+.brand{ font-size:12px; letter-spacing:0.26em; color:#9A968F; text-transform:uppercase; font-weight:300; }
+.back-btn{ font-size:13px; color:var(--gold); letter-spacing:0.12em; cursor:pointer; background:none; border:none; font-family:'Noto Sans TC',sans-serif; padding:0; border-bottom:1px solid var(--gold-pale); line-height:2.2; }
+
+/* RULE */
+.rule{ width:100%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:24px 0; }
+.rule-short{ width:40px; height:1px; background:linear-gradient(90deg,var(--gold),transparent); margin:0 auto 16px; }
+
+/* HERO */
+.hero-eyebrow{ font-size:12px; letter-spacing:0.32em; color:var(--gold); font-weight:400; margin-bottom:10px; line-height:2.2; }
+.hero-badge{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--gold),#B8925A);
+  color:var(--white); font-family:'Noto Serif TC',serif;
+  font-size:clamp(13px,3.5vw,14px); font-weight:500;
+  letter-spacing:0.16em; padding:6px 16px; border-radius:2px;
+  margin-bottom:14px; line-height:1.8;
+}
+.hero-title{ font-family:'Noto Serif TC',serif; font-size:clamp(22px,5.8vw,30px); font-weight:700; color:var(--ink); line-height:1.5; letter-spacing:0.06em; margin-bottom:16px; }
+.hero-title em{ font-style:normal; color:var(--gold); }
+.hero-desc{ font-size:clamp(13px,3.5vw,15px); color:var(--ink-mid); line-height:2.4; letter-spacing:0.04em; }
+
+/* FEATURE CARDS */
+.features{ display:flex; flex-direction:column; gap:12px; margin:24px 0; }
+.feature-card{
+  background:var(--white); border:1px solid var(--border); border-radius:8px;
+  padding:16px 18px; display:flex; gap:14px; align-items:flex-start;
+}
+.feature-icon{ flex-shrink:0; font-size:20px; margin-top:2px; opacity:0.8; }
+.feature-text{}
+.feature-title{ font-family:'Noto Serif TC',serif; font-size:14px; font-weight:500; color:var(--ink); letter-spacing:0.08em; margin-bottom:4px; line-height:1.8; }
+.feature-desc{ font-size:13px; color:var(--ink-light); line-height:2.1; letter-spacing:0.04em; }
+
+/* INTEREST FORM */
+.interest-wrap{
+  background:linear-gradient(135deg,#FDFAF4,#F7F0E2);
+  border:1px solid var(--gold-pale); border-radius:10px;
+  padding:24px 22px; margin-top:8px;
+}
+.interest-title{ font-family:'Noto Serif TC',serif; font-size:16px; font-weight:700; color:var(--ink); letter-spacing:0.10em; margin-bottom:6px; line-height:1.8; }
+.interest-sub{ font-size:13px; color:var(--ink-mid); line-height:2.1; letter-spacing:0.04em; margin-bottom:20px; }
+
+/* FIELD */
+.field-group{ margin-bottom:20px; }
+.field-label{ display:block; font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); letter-spacing:0.10em; margin-bottom:8px; line-height:1.9; }
+.req{ color:var(--gold); font-size:14px; margin-left:3px; }
+.field-hint{ display:block; font-size:12px; color:var(--ink-light); letter-spacing:0.08em; line-height:1.9; margin-bottom:8px; }
+
+.field-input{
+  display:block; width:100%; padding:14px 16px;
+  background:var(--white); border:1.5px solid var(--border); border-radius:6px;
+  font-family:'Noto Sans TC',sans-serif; font-size:15px; font-weight:300; color:var(--ink);
+  line-height:1.6; letter-spacing:0.04em;
+  -webkit-appearance:none; appearance:none; outline:none;
+  transition:border-color 0.2s,box-shadow 0.2s; min-height:50px;
+}
+.field-input:focus{ border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,169,110,0.14); }
+.field-input::placeholder{ color:#C0BCB6; }
+.field-input.err{ border-color:var(--red); }
+
+/* Gender radio */
+.radio-group{ display:flex; gap:10px; flex-wrap:wrap; }
+.radio-option{
+  flex:1; min-width:80px;
+  display:flex; align-items:center; justify-content:center;
+  padding:13px 10px; background:var(--white);
+  border:1.5px solid var(--border); border-radius:6px;
+  cursor:pointer; transition:border-color 0.2s,background 0.2s;
+  font-size:14px; color:var(--ink); letter-spacing:0.10em;
+  font-family:'Noto Serif TC',serif; min-height:50px;
+  position:relative;
+}
+.radio-option input[type="radio"]{ position:absolute; opacity:0; width:0; height:0; }
+.radio-option.selected{ border-color:var(--gold); background:#FDFAF4; color:var(--gold); font-weight:500; }
+.radio-option:active{ border-color:var(--gold); background:#FDFAF4; }
+
+/* Date row */
+.date-row{ display:flex; gap:8px; align-items:center; }
+.date-row .field-input{ flex:1; text-align:center; padding:14px 6px; min-width:0; }
+.date-sep{ font-size:15px; color:var(--ink-light); flex-shrink:0; }
+
+/* Error */
+.field-err{ display:none; font-size:12px; color:var(--red); letter-spacing:0.08em; line-height:1.9; margin-top:5px; }
+.field-err.show{ display:block; }
+
+/* SUBMIT */
+.submit-btn{ display:block; width:100%; padding:16px 24px; background:var(--ink); color:var(--white); border:none; border-radius:4px; cursor:pointer; font-family:'Noto Serif TC',serif; font-size:15px; font-weight:400; letter-spacing:0.18em; line-height:1.6; min-height:54px; position:relative; transition:opacity 0.2s; margin-top:4px; }
+.submit-btn::after{ content:''; position:absolute; inset:-1px; border:1px solid var(--gold); border-radius:4px; transform:translate(4px,4px); pointer-events:none; transition:transform 0.2s; }
+.submit-btn:active{ opacity:0.85; }
+.submit-btn:active::after{ transform:translate(2px,2px); }
+.submit-btn:disabled{ opacity:0.45; cursor:not-allowed; }
+
+/* SUCCESS */
+.success-box{ display:none; text-align:center; padding:40px 24px; margin-top:8px; background:var(--white); border:1px solid var(--gold-pale); border-radius:12px; }
+.success-box.show{ display:block; }
+.success-icon{ font-size:40px; margin-bottom:16px; letter-spacing:0.3em; }
+.success-title{ font-family:'Noto Serif TC',serif; font-size:clamp(18px,5vw,22px); font-weight:700; color:var(--green); letter-spacing:0.08em; margin-bottom:12px; line-height:1.6; }
+.success-body{ font-size:14px; color:var(--ink-mid); line-height:2.4; letter-spacing:0.04em; margin-bottom:20px; }
+.success-body a{ color:var(--gold); text-decoration:none; }
+.success-back{ display:inline-block; font-size:13px; color:var(--gold); letter-spacing:0.14em; cursor:pointer; border-bottom:1px solid var(--gold-pale); background:none; border-top:none; border-left:none; border-right:none; font-family:'Noto Sans TC',sans-serif; line-height:2.2; }
+
+/* FOOTER */
+.page-foot{ margin-top:36px; padding-top:20px; border-top:1px solid var(--border); text-align:center; }
+.foot-text{ font-size:12px; color:#9A968F; letter-spacing:0.18em; line-height:2.2; }
+.foot-text a{ color:var(--gold); text-decoration:none; }
+
+#gf-frame-i{ display:none; width:0; height:0; border:0; }
+
+@supports (padding:max(0px)){ .page{ padding-bottom:max(80px,env(safe-area-inset-bottom)); } }
+</style>
+</head>
+<body>
+
+<iframe id="gf-frame-i" name="gf-frame-i" title="interest-submit"></iframe>
+
+<div class="page">
+
+  <div class="top-bar">
+    <span class="brand">StateFlow Lab · 4848</span>
+    <button class="back-btn" onclick="history.back()">← 返回</button>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero-eyebrow">StateFlow Lab · 限定企劃</div>
+  <div class="hero-badge">獨家生日專屬測驗</div>
+  <h1 class="hero-title">超有感<em>心流測驗</em><br>你的節律，只有你才有</h1>
+  <p class="hero-desc">
+    不是星座、不是 MBTI，<br>
+    而是根據你的出生資料推算出的個人節律圖——<br>
+    讓你知道什麼時候該推、什麼時候該等、什麼時候最容易被看見。
+  </p>
+
+  <div class="rule"></div>
+
+  <!-- FEATURES -->
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">✦</div>
+      <div class="feature-text">
+        <div class="feature-title">屬於你的節律週期</div>
+        <div class="feature-desc">不是公式套用，而是從你的出生時間反推出你的個人能量曲線。</div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">◇</div>
+      <div class="feature-text">
+        <div class="feature-title">即時共鳴的解讀</div>
+        <div class="feature-desc">超有感是因為精準——你看到的是自己，不是「大部分人都適用」的模板。</div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">○</div>
+      <div class="feature-text">
+        <div class="feature-title">生日限定開放</div>
+        <div class="feature-desc">這次企劃只在這個時間窗口內開放，留下資料，我們在正式開放時第一時間通知你。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTEREST FORM -->
+  <div class="interest-wrap" id="formWrap">
+    <div class="interest-title">我有興趣，先登記通知我</div>
+    <div class="interest-sub">留下基本資料，開放時我們第一時間聯絡你，不會有任何推銷。</div>
+
+    <!--
+      Google Form entry IDs:
+      entry.1786360562 = Email
+      entry.2088587511 = 性別
+      entry.338475041  = 出生年月日
+    -->
+    <form id="interestForm"
+          action="https://docs.google.com/forms/d/e/1FAIpQLSe0p4t2vDca5UHMDsAIycfjX2Sfa2RknTNALq1SirLH3R7u6Q/formResponse"
+          method="POST" target="gf-frame-i" novalidate>
+
+      <!-- Email entry.1786360562 -->
+      <div class="field-group">
+        <label class="field-label" for="i-email">Email 信箱<span class="req">＊</span></label>
+        <input class="field-input" id="i-email" name="entry.1786360562"
+               type="email" placeholder="example@email.com" autocomplete="email" required>
+        <div class="field-err" id="ie-email">請輸入有效的 Email 信箱</div>
+      </div>
+
+      <!-- 性別 entry.2088587511 -->
+      <div class="field-group">
+        <label class="field-label">性別<span class="req">＊</span></label>
+        <div class="radio-group" id="genderGroup">
+          <label class="radio-option" id="g-male">
+            <input type="radio" name="entry.2088587511" value="男">男
+          </label>
+          <label class="radio-option" id="g-female">
+            <input type="radio" name="entry.2088587511" value="女">女
+          </label>
+          <label class="radio-option" id="g-other">
+            <input type="radio" name="entry.2088587511" value="其他">其他
+          </label>
+        </div>
+        <div class="field-err" id="ie-gender">請選擇性別</div>
+      </div>
+
+      <!-- 出生年月日 entry.338475041 (hidden, combined) -->
+      <div class="field-group">
+        <label class="field-label">西元出生年月日<span class="req">＊</span></label>
+        <span class="field-hint">例如：1990 年 3 月 28 日</span>
+        <div class="date-row">
+          <input class="field-input" id="i-year"  type="number" placeholder="西元年"
+                 min="1920" max="2010" inputmode="numeric" required>
+          <span class="date-sep">年</span>
+          <input class="field-input" id="i-month" type="number" placeholder="月"
+                 min="1" max="12" inputmode="numeric" required style="max-width:76px;">
+          <span class="date-sep">月</span>
+          <input class="field-input" id="i-day"   type="number" placeholder="日"
+                 min="1" max="31" inputmode="numeric" required style="max-width:76px;">
+          <span class="date-sep">日</span>
+        </div>
+        <input type="hidden" id="i-birth" name="entry.338475041" value="">
+        <div class="field-err" id="ie-birth">請輸入完整的西元出生年月日</div>
+      </div>
+
+      <button class="submit-btn" type="submit" id="iSubmitBtn">登記通知我 ✦</button>
+
+    </form>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-box" id="iSuccessBox">
+    <div class="success-icon">✦ ✦ ✦</div>
+    <div class="rule-short"></div>
+    <div class="success-title">已收到你的登記</div>
+    <div class="success-body">
+      我們記住你了。<br><br>
+      超有感心流測驗正式開放時，<br>
+      會第一時間寄信通知你。<br><br>
+      有任何問題請 IG 私訊<br>
+      <a href="https://www.instagram.com/anan_teacter/" target="_blank">@anan_teacter</a>
+    </div>
+    <button class="success-back" onclick="history.back()">← 返回祝福卡</button>
+  </div>
+
+  <div class="page-foot">
+    <div class="foot-text">
+      Copyright 2026 · StateFlow Lab · 4848<br>
+      IG：<a href="https://www.instagram.com/anan_teacter/" target="_blank">@anan_teacter</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+'use strict';
+var form=document.getElementById('interestForm');
+var submitBtn=document.getElementById('iSubmitBtn');
+var successBox=document.getElementById('iSuccessBox');
+var formWrap=document.getElementById('formWrap');
+var selectedGender='';
+
+// Radio button UI
+document.querySelectorAll('.radio-option').forEach(function(opt){
+  opt.addEventListener('click',function(){
+    document.querySelectorAll('.radio-option').forEach(function(o){ o.classList.remove('selected'); });
+    this.classList.add('selected');
+    selectedGender = this.querySelector('input').value;
+  });
+});
+
+function validate(){
+  var ok=true;
+  var email=document.getElementById('i-email').value.trim();
+  var emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  markErr('ie-email','i-email',!emailOk); if(!emailOk)ok=false;
+
+  markErr('ie-gender',null,!selectedGender);
+  if(!selectedGender)ok=false;
+
+  var y=parseInt(document.getElementById('i-year').value)||0;
+  var m=parseInt(document.getElementById('i-month').value)||0;
+  var d=parseInt(document.getElementById('i-day').value)||0;
+  var birthOk=y>=1920&&y<=2010&&m>=1&&m<=12&&d>=1&&d<=31;
+  markErr('ie-birth','i-year',!birthOk); if(!birthOk)ok=false;
+
+  return ok;
+}
+
+function markErr(eid,fid,isErr){
+  var e=document.getElementById(eid);
+  if(e)isErr?e.classList.add('show'):e.classList.remove('show');
+  if(fid){var f=document.getElementById(fid); if(f)isErr?f.classList.add('err'):f.classList.remove('err');}
+}
+
+document.querySelectorAll('.field-input').forEach(function(el){
+  el.addEventListener('input',function(){this.classList.remove('err');});
+});
+
+form.addEventListener('submit',function(e){
+  var y=document.getElementById('i-year').value;
+  var m=document.getElementById('i-month').value;
+  var d=document.getElementById('i-day').value;
+  document.getElementById('i-birth').value=y+'/'+m+'/'+d;
+
+  if(!validate()){
+    e.preventDefault();
+    var fe=document.querySelector('.field-input.err');
+    if(fe)fe.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+
+  submitBtn.disabled=true; submitBtn.textContent='送出中…';
+  setTimeout(function(){
+    formWrap.style.display='none';
+    successBox.classList.add('show');
+    window.scrollTo({top:0,behavior:'smooth'});
+  },1000);
+});
+</script>
+</body>
+</html>
