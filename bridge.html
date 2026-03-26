@@ -277,6 +277,52 @@ body{
   line-height:2.5;
 }
 
+/* ── SAMPLE REPORT TEASER ── */
+.sample-block{
+  background:var(--white);
+  border:1px solid var(--gold-pale);
+  border-radius:10px;
+  padding:24px 22px;
+  margin:28px 0 0;
+  position:relative;
+  overflow:hidden;
+}
+.sample-block::before{
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-pale),var(--gold));
+}
+.sample-eyebrow{
+  font-size:12px; letter-spacing:0.28em; color:var(--gold);
+  font-weight:400; margin-bottom:8px; line-height:2;
+}
+.sample-title{
+  font-family:'Noto Serif TC',serif;
+  font-size:clamp(16px,4.5vw,20px); font-weight:700;
+  color:var(--ink); letter-spacing:0.08em;
+  margin-bottom:12px; line-height:1.6;
+}
+.sample-desc{
+  font-size:clamp(13px,3.5vw,14px); color:var(--ink-mid);
+  line-height:2.4; letter-spacing:0.04em; margin-bottom:18px;
+}
+.sample-btn{
+  display:inline-block;
+  padding:13px 24px;
+  background:var(--ink); color:var(--white);
+  text-decoration:none;
+  font-family:'Noto Serif TC',serif;
+  font-size:14px; font-weight:400; letter-spacing:0.16em;
+  border-radius:4px; line-height:1.6;
+  position:relative; transition:opacity 0.2s;
+}
+.sample-btn::after{
+  content:''; position:absolute; inset:-1px;
+  border:1px solid var(--gold); border-radius:4px;
+  transform:translate(3px,3px); pointer-events:none;
+}
+.sample-btn:active{ opacity:0.85; }
+
 @supports (padding:max(0px)){
   .page{ padding-bottom:max(64px, env(safe-area-inset-bottom)); }
 }
@@ -383,6 +429,22 @@ body{
         <div class="step-desc">確認入帳後，我們開始跑報告，完成後直接交付給你。</div>
       </div>
     </div>
+  </div>
+
+  <!-- SAMPLE REPORT TEASER -->
+  <div class="sample-block">
+    <div class="sample-eyebrow">想先看看報告長什麼樣子？</div>
+    <div class="sample-title">499 體驗報告 · 範本預覽</div>
+    <div class="sample-desc">
+      這份範本讓你看到實際交付的報告內容與深度——<br>
+      節律分析、卡點解讀、時間窗口建議，<br>
+      不是模板，是真正屬於你的內容。
+    </div>
+    <a class="sample-btn"
+       href="https://www.notion.so/4848-499-32f7c69f5ede805eb122c86b2620a48f"
+       target="_blank">
+      查看報告範本 →
+    </a>
   </div>
 
   <!-- CTA -->
