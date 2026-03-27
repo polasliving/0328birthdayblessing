@@ -11,119 +11,79 @@
 :root{
   --bg:#F7F4EF; --ink:#2C2A26; --ink-mid:#4A4742; --ink-light:#5A5650;
   --gold:#C9A96E; --gold-pale:#E8D9BA; --border:#DDD8CF; --white:#FDFCF9;
-  --red:#B03A2E; --green:#4A7C5F;
 }
 *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
 html{ -webkit-text-size-adjust:100%; }
 body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans TC',sans-serif; font-weight:300; min-height:100vh; }
 
-.page{ max-width:480px; margin:0 auto; padding:28px 22px 80px; position:relative; z-index:1; }
-.page::before{
-  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
-  background:
-    radial-gradient(ellipse 70% 50% at 15% 85%,rgba(201,169,110,0.05) 0%,transparent 55%),
-    radial-gradient(ellipse 55% 45% at 85% 15%,rgba(190,195,195,0.06) 0%,transparent 55%);
-}
+.page{ max-width:640px; margin:0 auto; padding:24px 20px 60px; }
 
 /* TOP BAR */
-.top-bar{ display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; }
+.top-bar{ display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; }
 .brand{ font-size:12px; letter-spacing:0.26em; color:#9A968F; text-transform:uppercase; font-weight:300; }
 .back-btn{ font-size:13px; color:var(--gold); letter-spacing:0.12em; cursor:pointer; background:none; border:none; font-family:'Noto Sans TC',sans-serif; padding:0; border-bottom:1px solid var(--gold-pale); line-height:2.2; }
 
 /* RULE */
-.rule{ width:100%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:24px 0; }
-.rule-short{ width:40px; height:1px; background:linear-gradient(90deg,var(--gold),transparent); margin:0 auto 16px; }
+.rule{ width:100%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:20px 0; }
 
 /* HEADER */
 .form-eyebrow{ font-size:12px; letter-spacing:0.30em; color:var(--gold); font-weight:400; margin-bottom:10px; line-height:2.2; }
-.form-title{ font-family:'Noto Serif TC',serif; font-size:clamp(22px,5.5vw,28px); font-weight:700; color:var(--ink); line-height:1.6; letter-spacing:0.06em; margin-bottom:14px; }
+.form-title{ font-family:'Noto Serif TC',serif; font-size:clamp(20px,5vw,26px); font-weight:700; color:var(--ink); line-height:1.6; letter-spacing:0.06em; margin-bottom:12px; }
 .form-desc{ font-size:clamp(13px,3.5vw,15px); color:var(--ink-mid); line-height:2.4; letter-spacing:0.04em; }
 .form-desc strong{ font-weight:500; color:var(--ink); }
 
-/* NOTICE BOX */
-.notice-box{ background:linear-gradient(135deg,#FDFAF4,#F7F0E2); border:1px solid var(--gold-pale); border-radius:8px; padding:18px 20px; margin-bottom:26px; }
-.notice-title{ font-family:'Noto Serif TC',serif; font-size:13px; font-weight:500; color:var(--gold); letter-spacing:0.14em; margin-bottom:10px; line-height:1.9; }
-.notice-steps{ display:flex; flex-direction:column; gap:8px; }
+/* NOTICE */
+.notice-box{ background:linear-gradient(135deg,#FDFAF4,#F7F0E2); border:1px solid var(--gold-pale); border-radius:8px; padding:16px 18px; margin:20px 0; }
+.notice-title{ font-family:'Noto Serif TC',serif; font-size:13px; font-weight:500; color:var(--gold); letter-spacing:0.14em; margin-bottom:8px; line-height:1.9; }
+.notice-steps{ display:flex; flex-direction:column; gap:7px; }
 .notice-step{ display:flex; gap:10px; align-items:flex-start; }
 .notice-step-num{ flex-shrink:0; width:20px; height:20px; border:1px solid var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--gold); margin-top:3px; }
 .notice-step-text{ font-size:13px; color:var(--ink-mid); line-height:2.1; letter-spacing:0.04em; }
 
-/* FIELD */
-.field-group{ margin-bottom:22px; }
-.field-label{ display:block; font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); letter-spacing:0.10em; margin-bottom:8px; line-height:1.9; }
-.req{ color:var(--gold); font-size:14px; margin-left:3px; }
-.field-hint{ display:block; font-size:12px; color:var(--ink-light); letter-spacing:0.08em; line-height:1.9; margin-bottom:8px; }
-
-.field-input{
-  display:block; width:100%; padding:15px 16px;
-  background:var(--white); border:1.5px solid var(--border); border-radius:6px;
-  font-family:'Noto Sans TC',sans-serif; font-size:15px; font-weight:300; color:var(--ink);
-  line-height:1.6; letter-spacing:0.04em;
-  -webkit-appearance:none; appearance:none; outline:none;
-  transition:border-color 0.2s,box-shadow 0.2s; min-height:52px;
-}
-.field-input:focus{ border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,169,110,0.14); }
-.field-input::placeholder{ color:#C0BCB6; }
-.field-input.err{ border-color:var(--red); }
-
-/* Select */
-.field-select{
-  display:block; width:100%; padding:15px 40px 15px 16px;
-  background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A96E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 16px center;
-  border:1.5px solid var(--border); border-radius:6px;
-  font-family:'Noto Sans TC',sans-serif; font-size:15px; font-weight:300; color:var(--ink);
-  line-height:1.6; letter-spacing:0.04em;
-  -webkit-appearance:none; appearance:none; outline:none;
-  transition:border-color 0.2s,box-shadow 0.2s; min-height:52px; cursor:pointer;
-}
-.field-select:focus{ border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,169,110,0.14); }
-.field-select.err{ border-color:var(--red); }
-.field-select option[value=""]{ color:#C0BCB6; }
-
-/* Time row */
-.time-row{ display:flex; gap:8px; align-items:center; }
-.time-row .field-input{ flex:1; text-align:center; padding:15px 6px; min-width:0; }
-.time-sep{ font-size:18px; color:var(--ink-light); flex-shrink:0; font-weight:300; }
-
-/* Error */
-.field-err{ display:none; font-size:12px; color:var(--red); letter-spacing:0.08em; line-height:1.9; margin-top:5px; }
-.field-err.show{ display:block; }
-
-/* PAYMENT */
-.payment-block{ background:var(--white); border:1px solid var(--gold-pale); border-left:4px solid var(--gold); border-radius:0 8px 8px 0; padding:18px 20px; margin-bottom:26px; }
+/* PAYMENT BLOCK */
+.payment-block{ background:var(--white); border:1px solid var(--gold-pale); border-left:4px solid var(--gold); border-radius:0 8px 8px 0; padding:16px 18px; margin:20px 0; }
 .payment-title{ font-family:'Noto Serif TC',serif; font-size:14px; font-weight:700; color:var(--ink); letter-spacing:0.10em; margin-bottom:10px; line-height:1.9; }
 .payment-row{ font-size:13px; color:var(--ink-mid); line-height:2.3; letter-spacing:0.04em; }
 .payment-acct{ font-family:'Noto Serif TC',serif; font-size:16px; font-weight:700; color:var(--ink); letter-spacing:0.12em; line-height:2.0; }
 .payment-note{ font-size:12px; color:var(--ink-light); letter-spacing:0.08em; line-height:1.9; margin-top:6px; }
 
-/* SUBMIT */
-.submit-btn{ display:block; width:100%; padding:17px 24px; background:var(--ink); color:var(--white); border:none; border-radius:4px; cursor:pointer; font-family:'Noto Serif TC',serif; font-size:15px; font-weight:400; letter-spacing:0.18em; line-height:1.6; min-height:56px; position:relative; transition:opacity 0.2s; margin-bottom:16px; }
-.submit-btn::after{ content:''; position:absolute; inset:-1px; border:1px solid var(--gold); border-radius:4px; transform:translate(4px,4px); pointer-events:none; transition:transform 0.2s; }
-.submit-btn:active{ opacity:0.85; }
-.submit-btn:active::after{ transform:translate(2px,2px); }
-.submit-btn:disabled{ opacity:0.45; cursor:not-allowed; }
-
-/* SUCCESS */
-.success-box{ display:none; text-align:center; padding:40px 24px; margin-top:8px; background:var(--white); border:1px solid var(--gold-pale); border-radius:12px; }
-.success-box.show{ display:block; }
-.success-icon{ font-size:40px; margin-bottom:16px; letter-spacing:0.3em; }
-.success-title{ font-family:'Noto Serif TC',serif; font-size:clamp(18px,5vw,22px); font-weight:700; color:var(--green); letter-spacing:0.08em; margin-bottom:12px; line-height:1.6; }
-.success-body{ font-size:14px; color:var(--ink-mid); line-height:2.4; letter-spacing:0.04em; margin-bottom:20px; }
-.success-body a{ color:var(--gold); text-decoration:none; }
-.success-back{ display:inline-block; font-size:13px; color:var(--gold); letter-spacing:0.14em; cursor:pointer; border-bottom:1px solid var(--gold-pale); background:none; border-top:none; border-left:none; border-right:none; font-family:'Noto Sans TC',sans-serif; line-height:2.2; }
+/* GOOGLE FORM IFRAME WRAPPER */
+.gform-wrap{
+  width:100%;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  margin:20px 0;
+  /* min-height prevents layout jump while iframe loads */
+  min-height:600px;
+  display:flex; flex-direction:column;
+}
+.gform-loading{
+  padding:40px 24px;
+  text-align:center;
+  font-size:13px; color:var(--ink-light); letter-spacing:0.12em; line-height:2.2;
+  flex:1; display:flex; align-items:center; justify-content:center;
+}
+.gform-iframe{
+  width:100%;
+  border:none;
+  /* Height auto-grows; set a tall enough min */
+  min-height:900px;
+  display:block;
+}
 
 /* FOOTER */
-.page-foot{ margin-top:36px; padding-top:20px; border-top:1px solid var(--border); text-align:center; }
+.page-foot{ margin-top:28px; padding-top:18px; border-top:1px solid var(--border); text-align:center; }
 .foot-text{ font-size:12px; color:#9A968F; letter-spacing:0.18em; line-height:2.2; }
 .foot-text a{ color:var(--gold); text-decoration:none; }
 
-
-@supports (padding:max(0px)){ .page{ padding-bottom:max(80px,env(safe-area-inset-bottom)); } }
+@supports (padding:max(0px)){
+  .page{ padding-bottom:max(60px,env(safe-area-inset-bottom)); }
+}
 </style>
 </head>
 <body>
-
-
 <div class="page">
 
   <div class="top-bar">
@@ -133,10 +93,11 @@ body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans TC',sans-se
 
   <div class="form-eyebrow">4848 全方位體驗報告</div>
   <h1 class="form-title">填寫報名資料</h1>
-  <p class="form-desc">請填寫以下資料，填寫後資料直接儲存至我們的系統。<br><strong>填寫完成後，請務必完成匯款以便查詢。</strong></p>
+  <p class="form-desc">填寫以下報名資料，填寫後資料直接儲存至我們的系統。<br><strong>填寫完成後，請務必完成匯款以便查詢。</strong></p>
 
   <div class="rule"></div>
 
+  <!-- 流程說明 -->
   <div class="notice-box">
     <div class="notice-title">報名流程</div>
     <div class="notice-steps">
@@ -147,107 +108,29 @@ body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans TC',sans-se
     </div>
   </div>
 
-  <!--
-    Google Form entry IDs (已確認):
-    entry.138629238  = 暱稱
-    entry.262104177  = Email
-    entry.1177161660 = 出生縣市與行政區
-    entry.1980804454 = 24時制出生時間
-    entry.651838848  = 詢問報告主題
-    entry.807133389  = 匯款帳號後五碼
-  -->
-  <form id="signupForm"
-        action="https://docs.google.com/forms/d/e/1FAIpQLSc8voOY-L8Qb3YTx7xiD9Vp5HJ9kF7USeo9KxhgG9WO0-59-A/formResponse"
-        method="POST" target="gf-frame" novalidate>
+  <!-- 匯款資訊 -->
+  <div class="payment-block">
+    <div class="payment-title">⚠️ 請填寫完成後完成匯款</div>
+    <div class="payment-row">匯款金額：<strong>NT$ 499</strong></div>
+    <div class="payment-acct">013 國泰世華銀行</div>
+    <div class="payment-acct">帳號：007700002068</div>
+    <div class="payment-note">匯款完成後，我們確認入帳即開始製作你的報告，完成後直接交付</div>
+  </div>
 
-    <!-- 暱稱 entry.138629238 -->
-    <div class="field-group">
-      <label class="field-label" for="f-name">暱稱<span class="req">＊</span></label>
-      <input class="field-input" id="f-name" name="entry.138629238"
-             type="text" placeholder="請輸入你的暱稱" autocomplete="nickname" required>
-      <div class="field-err" id="e-name">請輸入暱稱</div>
-    </div>
-
-    <!-- Email entry.262104177 -->
-    <div class="field-group">
-      <label class="field-label" for="f-email">Email 信箱<span class="req">＊</span></label>
-      <input class="field-input" id="f-email" name="entry.262104177"
-             type="email" placeholder="example@email.com" autocomplete="email" required>
-      <div class="field-err" id="e-email">請輸入有效的 Email 信箱</div>
-    </div>
-
-    <!-- 出生縣市與行政區 entry.1177161660 -->
-    <div class="field-group">
-      <label class="field-label" for="f-city">出生縣市與行政區<span class="req">＊</span></label>
-      <span class="field-hint">例如：台北市 / 士林區</span>
-      <input class="field-input" id="f-city" name="entry.1177161660"
-             type="text" placeholder="例如：台北市 / 士林區" required>
-      <div class="field-err" id="e-city">請輸入出生縣市與行政區</div>
-    </div>
-
-    <!-- 24時制出生時間 entry.1980804454 (hidden, built from HH:MM) -->
-    <div class="field-group">
-      <label class="field-label">24時制出生時間<span style="font-size:12px;color:var(--ink-light);font-weight:300;margin-left:6px;letter-spacing:0.06em;">（不知道可不填）</span></label>
-      <span class="field-hint">例如：16 : 49　　不知道請勿填寫，直接留空</span>
-      <div class="time-row">
-        <input class="field-input" id="f-hour" type="number"
-               placeholder="時" min="0" max="23" inputmode="numeric">
-        <span class="time-sep">：</span>
-        <input class="field-input" id="f-minute" type="number"
-               placeholder="分" min="0" max="59" inputmode="numeric">
-      </div>
-      <input type="hidden" id="f-time" name="entry.1980804454" value="">
-      <div class="field-err" id="e-time">請輸入出生時間（時 0–23，分 0–59）</div>
-    </div>
-
-    <!-- 詢問報告主題 entry.651838848 -->
-    <div class="field-group">
-      <label class="field-label" for="f-topic">詢問報告主題<span class="req">＊</span></label>
-      <span class="field-hint">請選擇最想了解的方向（二擇一）+ 整體運勢</span>
-      <select class="field-select" id="f-topic" name="entry.651838848" required>
-        <option value="" disabled selected>請選擇報告主題</option>
-        <option value="感情 + 整體運勢">感情 + 整體運勢</option>
-        <option value="工作 + 整體運勢">工作 + 整體運勢</option>
-      </select>
-      <div class="field-err" id="e-topic">請選擇報告主題</div>
-    </div>
-
-    <!-- 匯款帳號後五碼 entry.807133389 -->
-    <div class="field-group">
-      <label class="field-label" for="f-account">匯款帳號後五碼<span class="req">＊</span></label>
-      <span class="field-hint">填寫報名單及後五碼完成後，請協助盡速完成匯款，以方便我們核對作業</span>
-      <input class="field-input" id="f-account" name="entry.807133389"
-             type="text" placeholder="例如：12345"
-             maxlength="5" inputmode="numeric" pattern="[0-9]{5}" required>
-      <div class="field-err" id="e-account">請輸入五碼數字</div>
-    </div>
-
-    <!-- 匯款資訊 -->
-    <div class="payment-block">
-      <div class="payment-title">⚠️ 請於填寫後完成匯款</div>
-      <div class="payment-row">匯款金額：<strong>NT$ 499</strong></div>
-      <div class="payment-acct">013 國泰世華銀行</div>
-      <div class="payment-acct">帳號：007700002068</div>
-      <div class="payment-note">匯款完成後，我們確認入帳即開始製作你的報告，完成後直接交付</div>
-    </div>
-
-    <button class="submit-btn" type="submit" id="submitBtn">確認送出報名 →</button>
-
-  </form>
-
-  <div class="success-box" id="successBox">
-    <div class="success-icon">✦ ✦ ✦</div>
-    <div class="rule-short"></div>
-    <div class="success-title">報名資料已送出</div>
-    <div class="success-body">
-      你的資料已成功儲存至我們的系統。<br><br>
-      請確認你已完成 <strong>NT$ 499</strong> 的匯款。<br>
-      確認入帳後，我們會開始製作你的<br>
-      4848 全方位體驗報告，完成後直接交付給你。<br><br>
-      有任何問題請 IG 私訊<br>
-      <a href="https://www.instagram.com/anan_teacter/" target="_blank">@anan_teacter</a>
-    </div>
-    <button class="success-back" onclick="history.back()">← 返回</button>
+  <!-- Google Form 原生 iframe -->
+  <div class="gform-wrap" id="gformWrap">
+    <div class="gform-loading" id="gformLoading">載入表單中…</div>
+    <iframe
+      class="gform-iframe"
+      id="gformIframe"
+      src="https://docs.google.com/forms/d/e/1FAIpQLSc8voOY-L8Qb3YTx7xiD9Vp5HJ9kF7USeo9KxhgG9WO0-59-A/viewform?embedded=true"
+      title="4848 體驗報告報名表單"
+      style="display:none;"
+      onload="this.style.display='block'; document.getElementById('gformLoading').style.display='none';"
+    >
+      <!-- Fallback if iframe blocked -->
+      載入中，請稍候…
+    </iframe>
   </div>
 
   <div class="page-foot">
@@ -260,97 +143,20 @@ body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans TC',sans-se
 </div>
 
 <script>
-'use strict';
-var form=document.getElementById('signupForm');
-var submitBtn=document.getElementById('submitBtn');
-var successBox=document.getElementById('successBox');
-
-function validate(){
-  var ok=true;
-  var name=document.getElementById('f-name').value.trim();
-  markErr('e-name','f-name',!name); if(!name)ok=false;
-
-  var email=document.getElementById('f-email').value.trim();
-  var emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  markErr('e-email','f-email',!emailOk); if(!emailOk)ok=false;
-
-  var city=document.getElementById('f-city').value.trim();
-  markErr('e-city','f-city',!city); if(!city)ok=false;
-
-  var hVal=document.getElementById('f-hour').value.trim();
-  var mVal=document.getElementById('f-minute').value.trim();
-  var timeOk=true;
-  if(hVal!==''||mVal!==''){
-    var h=parseInt(hVal); var m=parseInt(mVal);
-    timeOk=(!isNaN(h)&&h>=0&&h<=23)&&(!isNaN(m)&&m>=0&&m<=59);
+// Auto-resize iframe based on content (best-effort, same-origin only)
+// For cross-origin Google Forms, we rely on min-height
+// Fallback: if iframe doesn't load in 8s, show direct link
+setTimeout(function(){
+  var loading = document.getElementById('gformLoading');
+  var iframe  = document.getElementById('gformIframe');
+  if(loading && loading.style.display !== 'none'){
+    loading.innerHTML =
+      '表單載入中…如長時間未顯示，請<br>' +
+      '<a href="https://docs.google.com/forms/d/e/1FAIpQLSc8voOY-L8Qb3YTx7xiD9Vp5HJ9kF7USeo9KxhgG9WO0-59-A/viewform" ' +
+      'target="_blank" style="color:#C9A96E;text-decoration:none;border-bottom:1px solid #E8D9BA;">' +
+      '點此直接開啟 Google 表單 →</a>';
   }
-  markErr('e-time','f-hour',!timeOk); if(!timeOk)ok=false;
-
-  var topic=document.getElementById('f-topic').value;
-  markErr('e-topic','f-topic',!topic); if(!topic)ok=false;
-
-  var acc=document.getElementById('f-account').value.trim();
-  var accOk=/^\d{5}$/.test(acc);
-  markErr('e-account','f-account',!accOk); if(!accOk)ok=false;
-
-  return ok;
-}
-
-function markErr(eid,fid,isErr){
-  var e=document.getElementById(eid),f=document.getElementById(fid);
-  if(e)isErr?e.classList.add('show'):e.classList.remove('show');
-  if(f)isErr?f.classList.add('err'):f.classList.remove('err');
-}
-
-document.querySelectorAll('.field-input, .field-select').forEach(function(el){
-  el.addEventListener('change',function(){this.classList.remove('err');});
-  el.addEventListener('input', function(){this.classList.remove('err');});
-});
-
-form.addEventListener('submit',function(e){
-  e.preventDefault(); // Always prevent default, use fetch instead
-
-  // Build time string into hidden field
-  var hb=document.getElementById('f-hour').value.trim();
-  var mb=document.getElementById('f-minute').value.trim();
-  if(hb===''&&mb===''){
-    document.getElementById('f-time').value='';
-  } else {
-    document.getElementById('f-time').value=String(hb||'0').padStart(2,'0')+':'+String(mb||'0').padStart(2,'0');
-  }
-
-  if(!validate()){
-    var fe=document.querySelector('.field-input.err,.field-select.err');
-    if(fe)fe.scrollIntoView({behavior:'smooth',block:'center'});
-    return;
-  }
-
-  submitBtn.disabled=true;
-  submitBtn.textContent='送出中…';
-
-  // Collect all form data
-    // Build URL-encoded body (required for Google Forms no-cors POST)
-  var fd=new FormData(form);
-  var params=new URLSearchParams();
-  fd.forEach(function(val,key){ if(val!==undefined&&val!==null) params.append(key,val); });
-
-  fetch(form.action,{
-    method:'POST',
-    mode:'no-cors',
-    headers:{'Content-Type':'application/x-www-form-urlencoded'},
-    body:params.toString()
-  }).then(function(){
-    form.style.display='none';
-    successBox.classList.add('show');
-    window.scrollTo({top:0,behavior:'smooth'});
-  }).catch(function(){
-    // Even on catch, Google usually receives the data
-    // Show success anyway
-    form.style.display='none';
-    successBox.classList.add('show');
-    window.scrollTo({top:0,behavior:'smooth'});
-  });
-});
+}, 8000);
 </script>
 </body>
 </html>
