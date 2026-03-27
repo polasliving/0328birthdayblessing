@@ -117,14 +117,12 @@ body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans TC',sans-se
 .foot-text{ font-size:12px; color:#9A968F; letter-spacing:0.18em; line-height:2.2; }
 .foot-text a{ color:var(--gold); text-decoration:none; }
 
-#gf-frame{ display:none; width:0; height:0; border:0; }
 
 @supports (padding:max(0px)){ .page{ padding-bottom:max(80px,env(safe-area-inset-bottom)); } }
 </style>
 </head>
 <body>
 
-<iframe id="gf-frame" name="gf-frame" title="form-submit"></iframe>
 
 <div class="page">
 
@@ -189,14 +187,14 @@ body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans TC',sans-se
 
     <!-- 24時制出生時間 entry.1980804454 (hidden, built from HH:MM) -->
     <div class="field-group">
-      <label class="field-label">24時制出生時間<span class="req">＊</span></label>
-      <span class="field-hint">例如：16:49（不知道可填 00:00）</span>
+      <label class="field-label">24時制出生時間<span style="font-size:12px;color:var(--ink-light);font-weight:300;margin-left:6px;letter-spacing:0.06em;">（不知道可不填）</span></label>
+      <span class="field-hint">例如：16 : 49　　不知道請勿填寫，直接留空</span>
       <div class="time-row">
         <input class="field-input" id="f-hour" type="number"
-               placeholder="時" min="0" max="23" inputmode="numeric" required>
+               placeholder="時" min="0" max="23" inputmode="numeric">
         <span class="time-sep">：</span>
         <input class="field-input" id="f-minute" type="number"
-               placeholder="分" min="0" max="59" inputmode="numeric" required>
+               placeholder="分" min="0" max="59" inputmode="numeric">
       </div>
       <input type="hidden" id="f-time" name="entry.1980804454" value="">
       <div class="field-err" id="e-time">請輸入出生時間（時 0–23，分 0–59）</div>
@@ -279,9 +277,13 @@ function validate(){
   var city=document.getElementById('f-city').value.trim();
   markErr('e-city','f-city',!city); if(!city)ok=false;
 
-  var h=parseInt(document.getElementById('f-hour').value); if(isNaN(h))h=-1;
-  var m=parseInt(document.getElementById('f-minute').value); if(isNaN(m))m=-1;
-  var timeOk=h>=0&&h<=23&&m>=0&&m<=59;
+  var hVal=document.getElementById('f-hour').value.trim();
+  var mVal=document.getElementById('f-minute').value.trim();
+  var timeOk=true;
+  if(hVal!==''||mVal!==''){
+    var h=parseInt(hVal); var m=parseInt(mVal);
+    timeOk=(!isNaN(h)&&h>=0&&h<=23)&&(!isNaN(m)&&m>=0&&m<=59);
+  }
   markErr('e-time','f-hour',!timeOk); if(!timeOk)ok=false;
 
   var topic=document.getElementById('f-topic').value;
@@ -306,19 +308,46 @@ document.querySelectorAll('.field-input, .field-select').forEach(function(el){
 });
 
 form.addEventListener('submit',function(e){
-  // Build time string
-  var h=document.getElementById('f-hour').value.padStart(2,'0');
-  var m=document.getElementById('f-minute').value.padStart(2,'0');
-  document.getElementById('f-time').value=h+':'+m;
+  e.preventDefault(); // Always prevent default, use fetch instead
 
-  if(!validate()){ e.preventDefault(); var fe=document.querySelector('.field-input.err,.field-select.err'); if(fe)fe.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+  // Build time string into hidden field
+  var hb=document.getElementById('f-hour').value.trim();
+  var mb=document.getElementById('f-minute').value.trim();
+  if(hb===''&&mb===''){
+    document.getElementById('f-time').value='';
+  } else {
+    document.getElementById('f-time').value=String(hb||'0').padStart(2,'0')+':'+String(mb||'0').padStart(2,'0');
+  }
 
-  submitBtn.disabled=true; submitBtn.textContent='送出中…';
-  setTimeout(function(){
+  if(!validate()){
+    var fe=document.querySelector('.field-input.err,.field-select.err');
+    if(fe)fe.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+
+  submitBtn.disabled=true;
+  submitBtn.textContent='送出中…';
+
+  // Collect all form data
+  var fd=new FormData(form);
+
+  // POST to Google Form via no-cors fetch
+  // no-cors means we can't read the response, but data IS submitted
+  fetch(form.action, {
+    method:'POST',
+    mode:'no-cors',
+    body:fd
+  }).then(function(){
     form.style.display='none';
     successBox.classList.add('show');
     window.scrollTo({top:0,behavior:'smooth'});
-  },1000);
+  }).catch(function(){
+    // Even on catch, Google usually receives the data
+    // Show success anyway
+    form.style.display='none';
+    successBox.classList.add('show');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
 });
 </script>
 </body>

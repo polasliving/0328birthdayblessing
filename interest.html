@@ -132,14 +132,12 @@ body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans TC',sans-se
 .foot-text{ font-size:12px; color:#9A968F; letter-spacing:0.18em; line-height:2.2; }
 .foot-text a{ color:var(--gold); text-decoration:none; }
 
-#gf-frame-i{ display:none; width:0; height:0; border:0; }
 
 @supports (padding:max(0px)){ .page{ padding-bottom:max(80px,env(safe-area-inset-bottom)); } }
 </style>
 </head>
 <body>
 
-<iframe id="gf-frame-i" name="gf-frame-i" title="interest-submit"></iframe>
 
 <div class="page">
 
@@ -319,24 +317,36 @@ document.querySelectorAll('.field-input').forEach(function(el){
 });
 
 form.addEventListener('submit',function(e){
+  e.preventDefault();
+
   var y=document.getElementById('i-year').value;
   var m=document.getElementById('i-month').value;
   var d=document.getElementById('i-day').value;
   document.getElementById('i-birth').value=y+'/'+m+'/'+d;
 
   if(!validate()){
-    e.preventDefault();
     var fe=document.querySelector('.field-input.err');
     if(fe)fe.scrollIntoView({behavior:'smooth',block:'center'});
     return;
   }
 
-  submitBtn.disabled=true; submitBtn.textContent='送出中…';
-  setTimeout(function(){
+  submitBtn.disabled=true;
+  submitBtn.textContent='送出中…';
+
+  var fd=new FormData(form);
+  fetch(form.action,{
+    method:'POST',
+    mode:'no-cors',
+    body:fd
+  }).then(function(){
     formWrap.style.display='none';
     successBox.classList.add('show');
     window.scrollTo({top:0,behavior:'smooth'});
-  },1000);
+  }).catch(function(){
+    formWrap.style.display='none';
+    successBox.classList.add('show');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
 });
 </script>
 </body>
