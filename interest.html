@@ -9,67 +9,183 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F7F4EF; --ink:#2C2A26; --ink-mid:#4A4742; --ink-light:#5A5650;
-  --gold:#C9A96E; --gold-pale:#E8D9BA; --border:#DDD8CF; --white:#FDFCF9;
+  --bg:#F7F4EF;
+  --ink:#2C2A26;
+  --ink-mid:#4A4742;
+  --ink-light:#5A5650;
+  --gold:#C9A96E;
+  --gold-pale:#E8D9BA;
+  --border:#DDD8CF;
+  --white:#FDFCF9;
 }
 *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
 html{ -webkit-text-size-adjust:100%; }
-body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans TC',sans-serif; font-weight:300; min-height:100vh; }
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:300;
+  min-height:100vh;
+}
 
-.page{ max-width:640px; margin:0 auto; padding:24px 20px 60px; }
+.page{
+  max-width:640px;
+  margin:0 auto;
+  padding:24px 20px 80px;
+}
 
 /* TOP BAR */
-.top-bar{ display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; }
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:28px;
+}
 .brand{ font-size:12px; letter-spacing:0.26em; color:#9A968F; text-transform:uppercase; font-weight:300; }
-.back-btn{ font-size:13px; color:var(--gold); letter-spacing:0.12em; cursor:pointer; background:none; border:none; font-family:'Noto Sans TC',sans-serif; padding:0; border-bottom:1px solid var(--gold-pale); line-height:2.2; }
+.back-btn{
+  font-size:14px;
+  color:var(--gold);
+  letter-spacing:0.12em;
+  cursor:pointer;
+  background:none;
+  border:none;
+  font-family:'Noto Sans TC',sans-serif;
+  padding:8px 0;
+  border-bottom:1px solid var(--gold-pale);
+  line-height:1.8;
+  min-height:44px;
+  display:flex;
+  align-items:center;
+}
 
 /* RULE */
 .rule{ width:100%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:20px 0; }
 
 /* HERO */
-.hero-eyebrow{ font-size:12px; letter-spacing:0.32em; color:var(--gold); font-weight:400; margin-bottom:10px; line-height:2.2; }
-.hero-badge{ display:inline-block; background:linear-gradient(135deg,var(--gold),#B8925A); color:var(--white); font-family:'Noto Serif TC',serif; font-size:clamp(12px,3.2vw,13px); font-weight:500; letter-spacing:0.16em; padding:5px 14px; border-radius:2px; margin-bottom:14px; line-height:1.9; }
-.hero-title{ font-family:'Noto Serif TC',serif; font-size:clamp(20px,5.5vw,28px); font-weight:700; color:var(--ink); line-height:1.5; letter-spacing:0.06em; margin-bottom:14px; }
+.hero-eyebrow{
+  font-size:12px;
+  letter-spacing:0.32em;
+  color:var(--gold);
+  font-weight:400;
+  margin-bottom:10px;
+  line-height:2.2;
+}
+.hero-badge{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--gold),#B8925A);
+  color:var(--white);
+  font-family:'Noto Serif TC',serif;
+  font-size:clamp(12px,3.2vw,13px);
+  font-weight:500;
+  letter-spacing:0.16em;
+  padding:6px 16px;
+  border-radius:2px;
+  margin-bottom:14px;
+  line-height:1.9;
+}
+.hero-title{
+  font-family:'Noto Serif TC',serif;
+  font-size:clamp(20px,5.5vw,28px);
+  font-weight:700;
+  color:var(--ink);
+  line-height:1.5;
+  letter-spacing:0.06em;
+  margin-bottom:14px;
+}
 .hero-title em{ font-style:normal; color:var(--gold); }
-.hero-desc{ font-size:clamp(13px,3.5vw,15px); color:var(--ink-mid); line-height:2.4; letter-spacing:0.04em; }
+.hero-desc{
+  font-size:clamp(14px,3.5vw,15px);
+  color:var(--ink-mid);
+  line-height:2.4;
+  letter-spacing:0.04em;
+}
 
 /* FEATURES */
 .features{ display:flex; flex-direction:column; gap:10px; margin:20px 0; }
-.feature-card{ background:var(--white); border:1px solid var(--border); border-radius:8px; padding:14px 16px; display:flex; gap:12px; align-items:flex-start; }
-.feature-icon{ flex-shrink:0; font-size:18px; margin-top:2px; }
-.feature-title{ font-family:'Noto Serif TC',serif; font-size:14px; font-weight:500; color:var(--ink); letter-spacing:0.08em; margin-bottom:4px; line-height:1.8; }
+.feature-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:14px 16px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.feature-icon{ flex-shrink:0; font-size:18px; margin-top:3px; }
+.feature-title{
+  font-family:'Noto Serif TC',serif;
+  font-size:14px;
+  font-weight:500;
+  color:var(--ink);
+  letter-spacing:0.08em;
+  margin-bottom:4px;
+  line-height:1.8;
+}
 .feature-desc{ font-size:13px; color:var(--ink-light); line-height:2.1; letter-spacing:0.04em; }
 
-/* GOOGLE FORM IFRAME WRAPPER */
-.gform-section-label{
+/* FORM SECTION */
+.form-section-title{
   font-family:'Noto Serif TC',serif;
-  font-size:15px; font-weight:500; color:var(--ink);
-  letter-spacing:0.10em; margin-bottom:14px; line-height:1.9;
+  font-size:15px;
+  font-weight:500;
+  color:var(--ink);
+  letter-spacing:0.10em;
+  margin:24px 0 6px;
+  line-height:1.9;
 }
-.gform-section-sub{
-  font-size:13px; color:var(--ink-mid); line-height:2.2;
-  letter-spacing:0.04em; margin-bottom:16px;
+.form-section-sub{
+  font-size:13px;
+  color:var(--ink-mid);
+  line-height:2.2;
+  letter-spacing:0.04em;
+  margin-bottom:14px;
 }
-.gform-wrap{
+
+/* GOOGLE FORM IFRAME — always visible */
+.iframe-container{
+  position:relative;
   width:100%;
   background:var(--white);
   border:1px solid var(--border);
   border-radius:10px;
   overflow:hidden;
-  margin:0 0 24px;
-  min-height:500px;
-  display:flex; flex-direction:column;
+  margin-bottom:24px;
 }
-.gform-loading{
-  padding:40px 24px;
-  text-align:center;
-  font-size:13px; color:var(--ink-light); letter-spacing:0.12em; line-height:2.2;
-  flex:1; display:flex; align-items:center; justify-content:center;
+.iframe-spinner{
+  position:absolute;
+  top:0; left:0; right:0;
+  height:80px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  color:var(--ink-light);
+  letter-spacing:0.12em;
+  pointer-events:none;
+  transition:opacity 0.4s;
 }
 .gform-iframe{
-  width:100%; border:none;
-  min-height:800px;
   display:block;
+  width:100%;
+  min-height:900px;
+  border:none;
+  background:transparent;
+}
+
+/* FALLBACK */
+.fallback-link{
+  display:block;
+  text-align:center;
+  padding:14px 0 4px;
+  font-size:13px;
+  color:var(--ink-light);
+  letter-spacing:0.08em;
+  line-height:2;
+}
+.fallback-link a{
+  color:var(--gold);
+  text-decoration:none;
+  border-bottom:1px solid var(--gold-pale);
 }
 
 /* FOOTER */
@@ -78,7 +194,7 @@ body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans TC',sans-se
 .foot-text a{ color:var(--gold); text-decoration:none; }
 
 @supports (padding:max(0px)){
-  .page{ padding-bottom:max(60px,env(safe-area-inset-bottom)); }
+  .page{ padding-bottom:max(80px,env(safe-area-inset-bottom)); }
 }
 </style>
 </head>
@@ -127,22 +243,24 @@ body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans TC',sans-se
   </div>
 
   <!-- FORM SECTION -->
-  <div class="gform-section-label">我有興趣，先登記通知我</div>
-  <div class="gform-section-sub">留下基本資料，開放時我們第一時間聯絡你。</div>
+  <div class="form-section-title">我有興趣，先登記通知我</div>
+  <div class="form-section-sub">留下基本資料，開放時我們第一時間聯絡你。</div>
 
-  <!-- Google Form 原生 iframe -->
-  <div class="gform-wrap" id="gformWrap">
-    <div class="gform-loading" id="gformLoading">載入表單中…</div>
+  <div class="iframe-container">
+    <div class="iframe-spinner" id="spinner">載入中…</div>
     <iframe
       class="gform-iframe"
-      id="gformIframe"
-      src="https://docs.google.com/forms/d/e/1FAIpQLSe0p4t2vDca5UHMDsAIycfjX2Sfa2RknTNALq1SirLH3R7u6Q/viewform?embedded=true"
+      src="https://docs.google.com/forms/d/e/1FAIpQLSe0p4t2vDca5UHMDsAIycfjX2Sfa2RknTNALq1SirLH3R7u6Q/viewform?embedded=true&hl=zh-TW"
       title="超有感心流測驗登記表單"
-      style="display:none;"
-      onload="this.style.display='block'; document.getElementById('gformLoading').style.display='none';"
-    >
-      載入中，請稍候…
-    </iframe>
+      allowfullscreen
+      loading="eager"
+    ></iframe>
+  </div>
+
+  <div class="fallback-link">
+    若表單顯示異常，請
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe0p4t2vDca5UHMDsAIycfjX2Sfa2RknTNALq1SirLH3R7u6Q/viewform"
+       target="_blank">點此直接開啟 Google 表單 →</a>
   </div>
 
   <div class="page-foot">
@@ -153,18 +271,12 @@ body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans TC',sans-se
   </div>
 
 </div>
-
 <script>
 setTimeout(function(){
-  var loading = document.getElementById('gformLoading');
-  if(loading && loading.style.display !== 'none'){
-    loading.innerHTML =
-      '表單載入中…如長時間未顯示，請<br>' +
-      '<a href="https://docs.google.com/forms/d/e/1FAIpQLSe0p4t2vDca5UHMDsAIycfjX2Sfa2RknTNALq1SirLH3R7u6Q/viewform" ' +
-      'target="_blank" style="color:#C9A96E;text-decoration:none;border-bottom:1px solid #E8D9BA;">' +
-      '點此直接開啟 Google 表單 →</a>';
-  }
-}, 8000);
+  var sp = document.getElementById('spinner');
+  if(sp) sp.style.opacity = '0';
+  setTimeout(function(){ if(sp) sp.style.display='none'; }, 400);
+}, 2000);
 </script>
 </body>
 </html>
