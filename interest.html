@@ -225,17 +225,17 @@ body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans TC',sans-se
 
       <!-- 出生年月日 entry.338475041 (hidden, combined) -->
       <div class="field-group">
-        <label class="field-label">西元出生年月日<span class="req">＊</span></label>
+        <label class="field-label">西元出生年月日<span style="font-size:12px;color:var(--ink-light);font-weight:300;margin-left:6px;letter-spacing:0.06em;">（選填）</span></label>
         <span class="field-hint">例如：1990 年 3 月 28 日</span>
         <div class="date-row">
           <input class="field-input" id="i-year"  type="number" placeholder="西元年"
-                 min="1920" max="2010" inputmode="numeric" required>
+                 min="1920" max="2010" inputmode="numeric">
           <span class="date-sep">年</span>
           <input class="field-input" id="i-month" type="number" placeholder="月"
-                 min="1" max="12" inputmode="numeric" required style="max-width:76px;">
+                 min="1" max="12" inputmode="numeric" style="max-width:76px;">
           <span class="date-sep">月</span>
           <input class="field-input" id="i-day"   type="number" placeholder="日"
-                 min="1" max="31" inputmode="numeric" required style="max-width:76px;">
+                 min="1" max="31" inputmode="numeric" style="max-width:76px;">
           <span class="date-sep">日</span>
         </div>
         <input type="hidden" id="i-birth" name="entry.338475041" value="">
@@ -297,10 +297,14 @@ function validate(){
   markErr('ie-gender',null,!selectedGender);
   if(!selectedGender)ok=false;
 
-  var y=parseInt(document.getElementById('i-year').value)||0;
-  var m=parseInt(document.getElementById('i-month').value)||0;
-  var d=parseInt(document.getElementById('i-day').value)||0;
-  var birthOk=y>=1920&&y<=2010&&m>=1&&m<=12&&d>=1&&d<=31;
+  var yv=document.getElementById('i-year').value.trim();
+  var mv=document.getElementById('i-month').value.trim();
+  var dv=document.getElementById('i-day').value.trim();
+  var birthOk=true;
+  if(yv!==''||mv!==''||dv!==''){
+    var y=parseInt(yv),m=parseInt(mv),d=parseInt(dv);
+    birthOk=(y>=1920&&y<=2010)&&(m>=1&&m<=12)&&(d>=1&&d<=31);
+  }
   markErr('ie-birth','i-year',!birthOk); if(!birthOk)ok=false;
 
   return ok;
@@ -319,10 +323,14 @@ document.querySelectorAll('.field-input').forEach(function(el){
 form.addEventListener('submit',function(e){
   e.preventDefault();
 
-  var y=document.getElementById('i-year').value;
-  var m=document.getElementById('i-month').value;
-  var d=document.getElementById('i-day').value;
-  document.getElementById('i-birth').value=y+'/'+m+'/'+d;
+  var yb=document.getElementById('i-year').value.trim();
+  var mb2=document.getElementById('i-month').value.trim();
+  var db=document.getElementById('i-day').value.trim();
+  if(yb===''&&mb2===''&&db===''){
+    document.getElementById('i-birth').value='';
+  } else {
+    document.getElementById('i-birth').value=yb+'/'+mb2+'/'+db;
+  }
 
   if(!validate()){
     var fe=document.querySelector('.field-input.err');
@@ -333,11 +341,16 @@ form.addEventListener('submit',function(e){
   submitBtn.disabled=true;
   submitBtn.textContent='送出中…';
 
+  // Build URL-encoded body (required for Google Forms no-cors POST)
   var fd=new FormData(form);
+  var params=new URLSearchParams();
+  fd.forEach(function(val,key){ if(val!==undefined&&val!==null) params.append(key,val); });
+
   fetch(form.action,{
     method:'POST',
     mode:'no-cors',
-    body:fd
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:params.toString()
   }).then(function(){
     formWrap.style.display='none';
     successBox.classList.add('show');
