@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#F7F4EF">
+<title>4848 個人整體驗證報告｜499 範本</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F4EF; --ink:#2C2A26; --ink-mid:#4A4742; --ink-light:#5A5650;
+  --gold:#C9A96E; --gold-pale:#E8D9BA; --border:#DDD8CF; --white:#FDFCF9;
+}
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans TC',sans-serif; font-weight:300; min-height:100vh; }
+
+/* ── LAYOUT ── */
+.page{ max-width:640px; margin:0 auto; padding:28px 22px 80px; }
+
+/* ── TOP BAR ── */
+.top-bar{ display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; flex-wrap:wrap; gap:10px; }
+.brand{ font-size:12px; letter-spacing:0.26em; color:#9A968F; text-transform:uppercase; font-weight:300; }
+
+/* ── BACK BUTTON (三種位置) ── */
+.back-btn{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:11px 20px; background:var(--ink); color:var(--white);
+  font-family:'Noto Serif TC',serif; font-size:13px; font-weight:400;
+  letter-spacing:0.14em; border-radius:4px; cursor:pointer;
+  text-decoration:none; border:none;
+  position:relative; transition:opacity 0.2s;
+  -webkit-tap-highlight-color:transparent;
+  white-space:nowrap;
+}
+.back-btn::after{
+  content:''; position:absolute; inset:-1px;
+  border:1px solid var(--gold); border-radius:4px;
+  transform:translate(3px,3px); pointer-events:none;
+}
+.back-btn:active{ opacity:0.85; }
+
+/* Mid-page back button row */
+.back-row{
+  display:flex; justify-content:center;
+  padding:32px 0; border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border); margin:40px 0;
+}
+.back-row-label{
+  font-size:12px; color:var(--ink-light); letter-spacing:0.14em;
+  text-align:center; margin-bottom:12px; line-height:2;
+}
+
+/* ── GOLD RULE ── */
+.rule{ width:100%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:24px 0; }
+.rule-wave{ width:100%; height:1px; background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold-pale) 70%,transparent); margin:32px 0; }
+
+/* ── SAMPLE BADGE ── */
+.sample-notice{
+  background:linear-gradient(135deg,#FDFAF4,#F7F0E2);
+  border:1px solid var(--gold-pale); border-radius:8px;
+  padding:14px 18px; margin-bottom:28px;
+  display:flex; align-items:flex-start; gap:12px;
+}
+.sample-notice-icon{ font-size:18px; flex-shrink:0; margin-top:1px; }
+.sample-notice-text{ font-size:13px; color:var(--ink-mid); line-height:2.1; letter-spacing:0.04em; }
+.sample-notice-text strong{ color:var(--ink); font-weight:500; }
+
+/* ── REPORT HEADER ── */
+.report-eyebrow{ font-size:12px; letter-spacing:0.30em; color:var(--gold); font-weight:400; margin-bottom:10px; line-height:2.2; }
+.report-title{
+  font-family:'Noto Serif TC',serif;
+  font-size:clamp(22px,5.5vw,30px); font-weight:700;
+  color:var(--ink); line-height:1.5; letter-spacing:0.06em; margin-bottom:16px;
+}
+.client-table{
+  background:var(--white); border:1px solid var(--border); border-radius:8px;
+  padding:18px 20px; margin-bottom:8px;
+  font-size:13px; color:var(--ink-mid); line-height:2.3; letter-spacing:0.04em;
+}
+.client-table strong{ color:var(--ink); font-weight:500; }
+
+/* ── CHAPTER ── */
+.chapter{
+  margin-top:40px; padding-top:32px;
+  border-top:2px solid var(--border);
+}
+.chapter:first-of-type{ border-top:none; padding-top:0; }
+.chapter-num{
+  font-size:12px; letter-spacing:0.32em; color:var(--gold);
+  font-weight:400; margin-bottom:8px; line-height:2; text-transform:uppercase;
+}
+.chapter-title{
+  font-family:'Noto Serif TC',serif;
+  font-size:clamp(16px,4.5vw,20px); font-weight:700;
+  color:var(--ink); line-height:1.6; letter-spacing:0.08em;
+  margin-bottom:20px; padding-bottom:12px;
+  border-bottom:1px solid var(--gold-pale);
+}
+
+/* ── CONTENT BLOCKS ── */
+.body-text{
+  font-size:clamp(14px,3.8vw,15px); color:var(--ink-mid);
+  line-height:2.6; letter-spacing:0.04em; margin-bottom:16px;
+}
+.body-text + .body-text{ margin-top:4px; }
+
+/* Highlight quote */
+.highlight{
+  background:linear-gradient(135deg,#FDFAF4,#F7F0E2);
+  border-left:4px solid var(--gold); border-radius:0 8px 8px 0;
+  padding:16px 20px; margin:20px 0;
+  font-family:'Noto Serif TC',serif;
+  font-size:clamp(14px,3.8vw,15px); color:var(--ink);
+  line-height:2.4; letter-spacing:0.04em; font-weight:400;
+}
+
+/* Bullet list */
+.bullet-list{
+  padding:0; margin:16px 0 16px 4px;
+  list-style:none; display:flex; flex-direction:column; gap:10px;
+}
+.bullet-list li{
+  display:flex; gap:12px; align-items:flex-start;
+  font-size:clamp(14px,3.8vw,15px); color:var(--ink-mid);
+  line-height:2.2; letter-spacing:0.04em;
+}
+.bullet-list li::before{
+  content:'◆'; color:var(--gold); font-size:12px;
+  flex-shrink:0; margin-top:6px; opacity:0.7;
+}
+
+/* Section label */
+.section-label{
+  font-size:12px; font-weight:500; letter-spacing:0.24em;
+  color:var(--gold); margin:24px 0 12px; line-height:2;
+  text-transform:uppercase;
+}
+
+/* Sub-chapter */
+.sub-chapter{
+  background:var(--white); border:1px solid var(--border);
+  border-radius:8px; padding:20px 20px; margin:16px 0;
+}
+.sub-chapter-title{
+  font-family:'Noto Serif TC',serif;
+  font-size:clamp(14px,4vw,16px); font-weight:700;
+  color:var(--ink); letter-spacing:0.08em;
+  margin-bottom:12px; line-height:1.7;
+  display:flex; align-items:flex-start; gap:10px;
+}
+.sub-num{
+  flex-shrink:0; width:24px; height:24px;
+  background:var(--gold); color:var(--white);
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:500; margin-top:2px;
+}
+
+/* Age range cards */
+.age-block{
+  border-left:3px solid var(--gold-pale); padding:16px 20px;
+  margin:16px 0; border-radius:0 6px 6px 0;
+  background:var(--white);
+}
+.age-title{
+  font-family:'Noto Serif TC',serif;
+  font-size:clamp(14px,4vw,16px); font-weight:700;
+  color:var(--ink); letter-spacing:0.08em;
+  margin-bottom:8px; line-height:1.7;
+}
+.age-sub{ font-size:12px; color:var(--gold); letter-spacing:0.16em; margin-bottom:10px; line-height:1.8; }
+.age-body{ font-size:clamp(13px,3.5vw,14px); color:var(--ink-mid); line-height:2.3; letter-spacing:0.04em; }
+.age-detail{
+  margin-top:10px; padding-top:10px;
+  border-top:1px solid var(--border);
+  font-size:12px; color:var(--ink-light); letter-spacing:0.08em; line-height:2;
+}
+
+/* Verify block */
+.verify-block{
+  background:var(--white); border:1.5px solid var(--gold-pale);
+  border-radius:10px; padding:22px 20px; margin:16px 0;
+}
+.verify-title{
+  font-family:'Noto Serif TC',serif;
+  font-size:14px; font-weight:700; color:var(--gold);
+  letter-spacing:0.14em; margin-bottom:12px; line-height:1.8;
+}
+.verify-body{ font-size:clamp(13px,3.5vw,14px); color:var(--ink-mid); line-height:2.3; letter-spacing:0.04em; }
+
+/* Conclusion block */
+.conclusion{
+  background:linear-gradient(148deg,#2C2A26 0%,#3A3830 100%);
+  color:var(--white); border-radius:12px; padding:28px 24px;
+  margin-top:20px;
+}
+.conclusion-label{ font-size:12px; letter-spacing:0.30em; color:var(--gold-pale); margin-bottom:12px; line-height:2; opacity:0.8; }
+.conclusion-text{
+  font-family:'Noto Serif TC',serif;
+  font-size:clamp(14px,3.8vw,16px); font-weight:400;
+  color:#F5EFE2; line-height:2.6; letter-spacing:0.05em;
+}
+
+/* ── FOOTER ── */
+.page-foot{ margin-top:48px; padding-top:24px; border-top:1px solid var(--border); text-align:center; }
+.foot-text{ font-size:12px; color:#9A968F; letter-spacing:0.18em; line-height:2.2; }
+.foot-text a{ color:var(--gold); text-decoration:none; }
+
+@supports (padding:max(0px)){
+  .page{ padding-bottom:max(80px,env(safe-area-inset-bottom)); }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ── TOP BAR ── -->
+<div class="top-bar">
+  <span class="brand">StateFlow Lab · 4848</span>
+  <button class="back-btn" onclick="history.back()">← 返回預約報名</button>
+</div>
+
+<!-- ── SAMPLE NOTICE ── -->
+<div class="sample-notice">
+  <div class="sample-notice-icon">✦</div>
+  <div class="sample-notice-text">
+    <strong>這是 499 體驗報告的範本示例。</strong><br>
+    實際報告會依你的出生資料（年月日、時辰、出生地）重新推算，所有結論都是屬於你個人的版本。
+  </div>
+</div>
+
+<!-- ── REPORT HEADER ── -->
+<div class="report-eyebrow">4848 個人整體驗證報告｜499</div>
+<h1 class="report-title">範本｜個人整體＋事業</h1>
+
+<div class="client-table">
+  <strong>性別：</strong>女　　<strong>主題：</strong>個人整體＋事業<br>
+  <strong>四柱：</strong>丙寅年｜甲午月｜丙申日｜丙申時<br>
+  <strong>日主：</strong>丙火　　<strong>大運：</strong>庚寅大運
+</div>
+
+<div class="rule"></div>
+
+<!-- ════════════════════════════════
+     第一章
+════════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-num">Chapter 01</div>
+  <div class="chapter-title">先確認四柱</div>
+
+  <p class="body-text">本次鎖定四柱：<strong>丙寅年｜甲午月｜丙申日｜丙申時</strong>，日主丙火。</p>
+
+  <div class="highlight">
+    公開萬年曆可對到，出生當年為丙寅年、甲午月、丙申日；香港天文台年曆顯示，當年芒種在 6 月 6 日、夏至在 6 月 22 日，出生在兩者之間，月令明確仍落在午月。申時（15:00–16:59），丙日的申時對應丙申時。本案正式鎖定為 丙寅年｜甲午月｜丙申日｜丙申時。
+  </div>
+
+  <div class="section-label">起運方向與目前大運</div>
+  <p class="body-text">依常見排運規則，陽年女命逆行。由甲午月逆排，大運大致可抓為：</p>
+  <div class="highlight">癸巳 → 壬辰 → 辛卯 → 庚寅 → 己丑</div>
+  <p class="body-text">以目前時間點看，本案正式以 <strong>庚寅大運</strong> 作為主判讀基準。你這次雖然說「全盤全方面」，但又特別點到事業，所以這份以整體為主體核，再把事業收進同一條主線，不拆成兩份報告。</p>
+</div>
+
+<!-- ════════════════════════════════
+     第二章
+════════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-num">Chapter 02</div>
+  <div class="chapter-title">命盤靜態定位</div>
+
+  <div class="highlight">這張盤不是弱盤。真正麻煩的地方，不是你沒能力，而是你這種人天生就不是用低耗能方式活。</div>
+
+  <p class="body-text">你是 <strong>丙火日主</strong>。丙火不是小燈，它比較像太陽火、主體火、帶節奏的火。這種人最典型的不是低調忍讓，而是：你心裡其實一直有方向感，你不是沒想法，你也不是只能跟著走。</p>
+
+  <p class="body-text">但你偏偏又是 <strong>午月丙火、雙申貼身、年支寅木</strong>。這個組合很典型地會變成：</p>
+
+  <div class="highlight">外面很熱，裡面很硬；外面看你能衝，實際上你的人生常常是先燒、先撐、先撞，再慢慢長出位置。</div>
+
+  <p class="body-text">你不是沒舞台，你是舞台感很強。可是你這種舞台，不太是那種一開始就被輕鬆托上去的版本，而比較像：</p>
+
+  <ul class="bullet-list">
+    <li>要先證明你有本事</li>
+    <li>要先扛得住壓力</li>
+    <li>要先在現實裡打幾次</li>
+    <li>別人才會承認你不是只有氣勢，你是真的能成事</li>
+  </ul>
+
+  <p class="body-text">所以你整體人生最大的問題，不是「我能不能做」，而是：</p>
+
+  <div class="highlight">我明明不是沒能力，為什麼很多事情最後都會變成我要先頂、先衝、先承擔。</div>
+
+  <div class="section-label">三句糾偏</div>
+  <ul class="bullet-list">
+    <li>不是你命裡沒有事業，是你的事業不是被照顧型，而是打出來型。</li>
+    <li>不是你太硬，是你本來就很難在沒主體、沒效率、沒結果的環境裡長期待著。</li>
+    <li>不是你只能辛苦，是你太常把能力先活成扛責任，還沒完全活成位置。</li>
+  </ul>
+</div>
+
+<!-- ════════════════════════════════
+     第三章
+════════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-num">Chapter 03</div>
+  <div class="chapter-title">核心結構</div>
+
+  <div class="sub-chapter">
+    <div class="sub-chapter-title"><div class="sub-num">1</div>午月丙火：你的人生主體不是弱，是火太旺，不能亂活</div>
+    <p class="body-text">丙火生在午月，本身就很強。白話翻譯就是：你不是那種可以一直被人安排、一直沒有主見的人。你有自己的節奏，也很難長期待在低效率、低標準、低成就感的位置上。</p>
+    <div class="highlight">你不是沒工作能力，而是你很難做沒有靈魂的工作太久。做久了，你整個人會先煩、先燥、先不耐。</div>
+  </div>
+
+  <div class="sub-chapter">
+    <div class="sub-chapter-title"><div class="sub-num">2</div>雙申貼身：你不是只會衝，你其實很早就被現實訓練</div>
+    <p class="body-text">日支申、時支申，代表現實感、效率感、結果感會貼身跟著你。白話翻譯就是：你不是只有熱血，你其實很早就知道，光有能力不夠，還要有結果、有位置、有對價。</p>
+    <div class="highlight">你最容易走成的，不是夢想型人生，而是：理想很強，但會被現實不斷逼著修正。</div>
+  </div>
+
+  <div class="sub-chapter">
+    <div class="sub-chapter-title"><div class="sub-num">3</div>寅申沖：你的人生不是平推型，是碰撞式成長型</div>
+    <p class="body-text">年支寅、日支申直接沖。這是一種很典型的命感：你不太可能一路平平順順照腳本走，很多重要轉折都不是慢慢自然來，而是先撞到、先不合、先受不了，然後才決定換路。</p>
+    <p class="body-text">這放在事業上尤其明顯：你很可能不是一條路做到底的人，你比較像會因為不對、太耗、太卡，而被迫長出更適合自己的版本。</p>
+  </div>
+
+  <div class="sub-chapter">
+    <div class="sub-chapter-title"><div class="sub-num">4</div>甲木透月：你的事業運不是靠服從，而是靠輸出與主導</div>
+    <p class="body-text">甲木在月干，是你的資源、方向、規格感。白話翻譯就是：你最適合的，不是永遠做被指派、被限制、只負責執行的人，你更適合的是：</p>
+    <ul class="bullet-list">
+      <li>要能自己判斷</li>
+      <li>要能自己推進</li>
+      <li>要能做出方法</li>
+      <li>要能建立自己的做事邏輯</li>
+    </ul>
+    <div class="highlight">你不是不能上班。但你如果一直被卡在太死、太小、太沒主導權的位置，會特別耗。</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     第四章
+════════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-num">Chapter 04</div>
+  <div class="chapter-title">命盤三重張力</div>
+
+  <div class="sub-chapter">
+    <div class="sub-chapter-title"><div class="sub-num">1</div>你很能扛，但不代表你喜歡一直當先鋒</div>
+    <p class="body-text">你很多能力都長在：啟動、推進、救場、把混亂拉回可運轉。所以你不是沒本事，你是本事常常長在「先把事情弄動起來」這條線上。</p>
+    <div class="highlight">你越能做，越容易被默認成那個該多做的人。</div>
+  </div>
+
+  <div class="sub-chapter">
+    <div class="sub-chapter-title"><div class="sub-num">2</div>你要的是有位置的穩，不是低品質的穩</div>
+    <p class="body-text">你不是不要穩。但你要的不是那種只是表面有薪水、實際一直悶一直耗的穩，你要的是：有成長的穩、有主導權的穩、有結果感的穩、有對價的穩。</p>
+    <div class="highlight">不是你待不住，是你本來就不適合用將就去換穩定。</div>
+  </div>
+
+  <div class="sub-chapter">
+    <div class="sub-chapter-title"><div class="sub-num">3</div>你不是沒有事業運，而是事業運常常先綁著壓力上來</div>
+    <p class="body-text">你很多機會不是沒有，而是常常長成：事情很多、壓力很重、你得先撐住，後面才慢慢換成位置或成果。</p>
+    <div class="highlight">事業很常先以責任的樣子出現，再慢慢變成回收。</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     MID-PAGE BACK BUTTON
+════════════════════════════════ -->
+<div class="back-row">
+  <div style="text-align:center;">
+    <div class="back-row-label">看到這裡已有感覺？<br>現在就可以前往報名，取得屬於你的版本</div>
+    <button class="back-btn" onclick="history.back()">← 前往報名 4848 體驗報告</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     第五章
+════════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-num">Chapter 05</div>
+  <div class="chapter-title">十年切割驗證</div>
+
+  <div class="age-block">
+    <div class="age-title">0–10 歲</div>
+    <div class="age-sub">主軸：早熟、反應快</div>
+    <p class="age-body">很早就知道誰比較有權威、誰比較不能惹，也很容易對家裡氣氛、節奏和衝突有感。不是沒童年，而是童年裡已經混進看局能力。</p>
+    <p class="age-body" style="margin-top:8px;">你從小就不是完全粗線條版，很多事情表面沒講，但心裡其實知道。丙火強、申金貼身、寅申沖，代表你很早就會感覺到：外部世界不是單純舒服，要學會反應。</p>
+    <div class="age-detail">6–8 歲：對家庭氣氛與秩序特別敏感　　9–10 歲：開始明顯有自己的脾氣與小原則</div>
+  </div>
+
+  <div class="age-block">
+    <div class="age-title">11–20 歲</div>
+    <div class="age-sub">主軸：自尊感、表現感、比較感一起長</div>
+    <p class="age-body">很早就知道自己不能太差，對表現、成績、被看見很有感，也容易經歷一段外表正常、心裡壓力很大但不太講的時期。不是沒青春，而是青春很早就摻進競爭、比較和自我要求。</p>
+    <div class="age-detail">15–17 歲：比較、自尊、被評價感特別明顯　　18–20 歲：開始知道不能只靠熱情，要看值不值得</div>
+  </div>
+
+  <div class="age-block">
+    <div class="age-title">21–30 歲</div>
+    <div class="age-sub">主軸：進入現實世界，最強感覺不是沒機會而是得先自己扛</div>
+    <p class="age-body">工作、人際、方向上容易有一次以上重整；很容易被放進「因為你比較能做，所以你先處理」的局；不是沒有發展，而是發展常常先綁責任、速度、壓力。</p>
+    <div class="highlight" style="margin:12px 0 8px;">最累的不是沒路，而是：很多事不是做不到，是做著做著開始覺得都要靠我先推。</div>
+    <div class="age-detail">23–25 歲：第一次知道工作不是只看會不會做　　26–28 歲：最容易有一次方向或職涯標準的大重整　　29–30 歲：開始知道不能再亂扛、亂補位</div>
+  </div>
+
+  <div class="age-block">
+    <div class="age-title">31–40 歲</div>
+    <div class="age-sub">主軸：從「我能撐」走到「我到底還要不要一直這樣撐」</div>
+    <p class="age-body">對工作、人際、合作品質和成長性越來越敏感；不再想一直做最會救場的人；很可能開始切掉低品質合作、低品質平台、低品質做法。你目前就在 <strong>庚寅大運</strong>。</p>
+    <div class="highlight" style="margin:12px 0 8px;">這十年最深的感覺：我知道有些活法不能再照舊用了。</div>
+    <div class="age-detail">31–33 歲：對工作結構與合作品質特別不耐　　34–36 歲：最容易做出切割、換位、升級動作　　37–39 歲：如果前面已整理，這段更像把能力換成位置</div>
+  </div>
+
+  <div class="age-block" style="border-left-color:var(--gold);">
+    <div class="age-title">41 歲以後（預判）</div>
+    <div class="age-sub">主軸：從高燃燒人生，轉向高結構人生</div>
+    <p class="age-body">不再只看能不能做，而會更看資源、權限、長期回收；更不願意浪費力氣在純補位型工作上；事業會更明顯往「自己的方法、自己的節奏」靠。</p>
+    <div class="highlight" style="margin:12px 0 8px;">不是你變現實，而是你終於更不想浪費。</div>
+    <div class="age-detail">41–43 歲：重排事業、生活、邊界　　44–46 歲：更明顯只把力氣放在會長出價值的地方</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     第六章
+════════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-num">Chapter 06</div>
+  <div class="chapter-title">現在大運判讀｜庚寅大運</div>
+
+  <div class="highlight">你現在這步運，不是躺平運。也不是那種舒服到可以混著過的運。它比較像：把你從「很會做、很會扛」推到「不得不重新決定自己要站在哪裡」的運。</div>
+
+  <p class="body-text"><strong>庚金</strong>對丙火來說，是財。也就是說，這步運會讓你很直接地去面對：對價、回報、價格、成果、我這樣做到底值不值。</p>
+  <p class="body-text"><strong>寅木</strong>則把你的主體感、方向感和不願意委屈自己的那條線重新拉高。</p>
+
+  <div class="section-label">這步運的好處</div>
+  <ul class="bullet-list">
+    <li>看局更準，對值不值得的判斷更清楚</li>
+    <li>很適合整理事業方向、合作模式、收入結構</li>
+    <li>有機會把過去的苦撐，翻成更有位置的選擇</li>
+  </ul>
+
+  <div class="section-label">這步運的風險</div>
+  <ul class="bullet-list">
+    <li>容易煩、容易累</li>
+    <li>容易對低效率和不合理要求很沒耐性</li>
+    <li>容易一邊想動，一邊又怕自己動錯</li>
+  </ul>
+
+  <div class="highlight">這步運真正的卡點，不是沒路。而是：你已經知道舊方法會耗你，但新位置還在成形，所以中間最不耐。</div>
+  <div class="highlight">不是你最近特別衰，是你現在走到不能再一直用「我先來」這種方式過事業的階段。</div>
+</div>
+
+<!-- ════════════════════════════════
+     第七章
+════════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-num">Chapter 07</div>
+  <div class="chapter-title">2026–2027 流年重點</div>
+
+  <div class="age-block" style="border-left-color:var(--gold);">
+    <div class="age-title">2026（丙午年）</div>
+    <div class="age-sub">主軸：不是安靜年，是把事業節奏、主導感、去留感一起點亮的一年</div>
+    <p class="age-body">工作與合作模式容易明顯變動；原本還能拖的去留、分工、成長問題，會突然拖不下去；很容易出現「要嘛更清楚，要嘛更切開」的局。</p>
+    <div class="highlight" style="margin:12px 0 8px;">2026 不會很安靜，比較像：很多原本只是心裡不爽的事，開始不能只放在心裡。</div>
+    <div class="age-detail">上半年：先躁、先煩、先想動　　下半年：更像真正做取捨、做切割、做重整</div>
+  </div>
+
+  <div class="age-block">
+    <div class="age-title">2027（丁未年）</div>
+    <div class="age-sub">主軸：收斂年、定型年，把 2026 翻出來的東西收進新結構</div>
+    <p class="age-body">更適合定方向、定合作邊界、定事業節奏；若 2026 已有變動，2027 比較像落地年；會更清楚知道什麼值得留、什麼只是消耗。</p>
+    <div class="highlight" style="margin:12px 0 8px;">2027 不一定比較輕鬆，但比較像：我開始知道自己該怎麼做，才不會一直被工作拖著跑。</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     第八章
+════════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-num">Chapter 08</div>
+  <div class="chapter-title">可驗證人生事件清單</div>
+
+  <p class="body-text">這張盤很容易出現以下 8 類可驗證事件：</p>
+
+  <ul class="bullet-list">
+    <li>你從小就不是完全粗線條、完全鈍感的版本。</li>
+    <li>你很早就有主體感，也很早就知道很多事不會自己變好。</li>
+    <li>你很多能力都長在啟動、推進、救場、收尾，而不是被輕鬆照顧。</li>
+    <li>你常常比別人更早看懂一個局有沒有問題，但不一定更早退出。</li>
+    <li>你在工作上很容易被放進「因為你能做，所以你先做」的位置。</li>
+    <li>你最累的通常不是事情多，而是事情不夠值。</li>
+    <li>你現在最大的課題不是找更多機會，而是刪掉不值得你一直點火的局。</li>
+    <li>2026–2027 會很明顯地逼你把整體人生主軸與事業結構重新整理。</li>
+  </ul>
+
+  <div class="section-label">三個立即驗證點</div>
+
+  <div class="verify-block">
+    <div class="verify-title">驗證點 A｜回看你最累的三段時期</div>
+    <p class="verify-body">把 15–17、26–28、34–36 這三段，各寫出一件最耗你的事。你要看的不是有沒有倒楣，而是至少兩段都很可能長這樣：不是你最不會做，反而是你比較會帶、比較會推，所以事情最後變成你在扛。</p>
+  </div>
+
+  <div class="verify-block">
+    <div class="verify-title">驗證點 B｜分辨你真正不能忍的是什麼</div>
+    <p class="verify-body">你最近最想離開或最想調整的一個工作局，真正讓你不想待的，通常不是單純累，而是以下至少兩條同時存在：</p>
+    <ul class="bullet-list" style="margin-top:10px;">
+      <li>分工不清　</li>
+      <li>邊界模糊</li>
+      <li>回報不對價</li>
+      <li>低效率、低標準、沒主導權</li>
+    </ul>
+  </div>
+
+  <div class="verify-block">
+    <div class="verify-title">驗證點 C｜觀察 2026 的變動是不是動到真實位置</div>
+    <p class="verify-body">接下來你要觀察的，不只是心情，而是：職位、團隊、工作內容、作息、合作模式、去留判斷。這六條裡面，2026 很可能至少有一條不是微調，而是被迫改版。這不是抽象心情，是會動到真實人生配置。</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     第九章 — CONCLUSION
+════════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-num">Chapter 09</div>
+  <div class="chapter-title">核心結論</div>
+
+  <div class="conclusion">
+    <div class="conclusion-label">一句收斂</div>
+    <p class="conclusion-text">
+      你不是沒有整體運，也不是沒有事業運，而是你一直活在「主體很強、很會做、很會帶、很早看懂局，所以人生很多推進都先經過救場、承擔、硬撐」的結構裡；真正要驗證的不是你還能不能再扛，而是你能不能在 2026–2027 把那個很會收、很會扛、很會替整個局點火的自己，收斂成一個更會選位置、也更不再便宜消耗自己的版本。
+    </p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     BOTTOM BACK BUTTON
+════════════════════════════════ -->
+<div class="rule-wave"></div>
+<div style="text-align:center; padding:8px 0 24px;">
+  <p style="font-size:13px;color:var(--ink-light);letter-spacing:0.12em;line-height:2.2;margin-bottom:18px;">
+    這份是範本示例。<br>你的報告會依你的真實出生資料重新推算，<br>所有結論都是屬於你個人的版本。
+  </p>
+  <button class="back-btn" onclick="history.back()" style="font-size:14px;padding:14px 28px;">
+    ← 立即報名，取得我的專屬報告
+  </button>
+</div>
+
+<div class="page-foot">
+  <div class="foot-text">
+    Copyright 2026 · StateFlow Lab · 4848<br>
+    IG：<a href="https://www.instagram.com/anan_teacter/" target="_blank">@anan_teacter</a>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
